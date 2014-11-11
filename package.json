@@ -35,8 +35,8 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/stony/OneCodeSite.git"
+    "url": "git://github.com/stonyw/OneCodeSite.git"
   },
-  "author": "stony",
+  "author": "Stony Wang",
   "license": ""
 }
