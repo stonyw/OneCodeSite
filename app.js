@@ -53,7 +53,9 @@ process.chdir(__dirname);
     }
   }
 
-
+  var util = require('util');
+  app.locals.util = util;
+  
   // Start server
   sails.lift(rc('sails'));
 })();

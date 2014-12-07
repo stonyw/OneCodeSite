@@ -1,3 +1,3 @@
-# testProject
+# OneCodeSite
 
 a [Sails](http://sailsjs.org) application

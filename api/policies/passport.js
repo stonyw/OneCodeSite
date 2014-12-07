@@ -26,6 +26,8 @@ module.exports = function (req, res, next) {
   passport.initialize()(req, res, function () {
     // Use the built-in sessions
     passport.session()(req, res, function () {
+      sails.log.debug("process policies for passport, url:" + req.url + " user:" + req.user);
+
       // Make the user available throughout the frontend
       res.locals.user = req.user;
 
