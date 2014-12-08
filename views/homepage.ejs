@@ -15,6 +15,32 @@ setTimeout(function sunrise () {
         <h1 id="main-title" class="container"><%= __('A brand new app.') %></h1>
         <h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
     </div>
+    <div>
+        <%
+            sails.log.debug("session: " + util.inspect(req.session));
+            //sails.log.debug("ejs req: " + util.inspect(req));
+            //sails.log.debug("ejs res: " + util.inspect(res));
+            //sails.log.debug("ejs req.user: " + util.inspect(req.user));
+            //sails.log.debug("ejs res.user: " + util.inspect(res.user));
+            var u = res.req.flash('user');
+            sails.log.debug("ejs res.req.flash(\"user\"): " + util.inspect(u));
+            sails.log.debug("ejs username: " + u["username"]);
+            sails.log.debug("ejs email: " + u["email"]);
+        %>
+
+        <% if (req.session.passport && req.session.passport.user) {%>
+        <span><%=req.session.passport.user%></span>
+        <span><%=u.username%></span>
+        <span><%=u.email%></span>
+        <h3>
+        <a href="/logout" > 登出 </a>
+        <%} else {%>
+        <h3>
+        <a href="/login" > 登录 </a>
+        <%}%>
+	      <a href="/register" > 注册 </a>
+        </h3>
+    </div>
     <div class="main container clearfix">
         <!-- <h1>Getting started</h1>
         <p>Don't worry, we've got your back.</p> -->
@@ -47,31 +73,6 @@ setTimeout(function sunrise () {
                     </h3>
                     <p>Blueprints are just the beginning.  You'll probably also want to learn how to customize your app's <a href="http://sailsjs.org/#/documentation/concepts/Routes">routes</a>, set up <a href="http://sailsjs.org/#/documentation/concepts/Policies">security policies</a>, configure your <a href="http://sailsjs.org/#/documentation/reference/sails.config/sails.config.connections.html">data sources</a>, and build custom <a target="_blank" href="http://sailsjs.org/#/documentation/concepts/Controllers?q=actions">controller actions</a>. For more help getting started, check out the links on this page.</p>
 
-                </div>
-            </li>
-            <li>
-                <div>
-                	<%
-                  sails.log.debug("session: " + util.inspect(req.session));
-                  //sails.log.debug("ejs req: " + util.inspect(req));
-                  //sails.log.debug("ejs res: " + util.inspect(res));
-                  //sails.log.debug("ejs req.user: " + util.inspect(req.user));
-                  //sails.log.debug("ejs res.user: " + util.inspect(res.user));
-                  var u = res.req.flash('user');
-                  sails.log.debug("ejs res.req.flash(\"user\"): " + util.inspect(u));
-                  sails.log.debug("ejs username: " + u["username"]);
-                  sails.log.debug("ejs email: " + u["email"]);
-                  %>
-
-                  <% if (req.session.passport && req.session.passport.user) {%>
-                    <div><%=req.session.passport.user%></div>
-                    <div><%=u.username%></div>
-                    <div><%=u.email%></div>
-                    <a href="/logout" > 登出 </a>
-                  <%} else {%>
-                    <a href="/login" > 登录 </a>
-                  <%}%>
-	                <a href="/register" > 注册 </a>
                 </div>
             </li>
         </ul>

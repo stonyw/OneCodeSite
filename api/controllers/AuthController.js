@@ -1,4 +1,3 @@
-var util = require('util');
 /**
  * Authentication Controller
  *
@@ -6,6 +5,8 @@ var util = require('util');
  * should look. It currently includes the minimum amount of functionality for
  * the basics of Passport.js to work.
  */
+var util = require('util');
+
 var AuthController = {
   /**
    * Render the login page
@@ -157,7 +158,7 @@ var AuthController = {
         return tryAgain();
       }
       sails.log.debug("passport.callback");
-      //sails.log.debug("req: " + util.inspect(req));
+
       req.login(user, function (err) {
         if (err) {
           return tryAgain();
@@ -166,11 +167,7 @@ var AuthController = {
         // Upon successful login, send the user to the homepage were req.user
         // will available.
         //sails.log.debug("req exist: " + JSON.stringify(req));
-        //console.log("req exist: " + JSON.stringify(req));
-        //sails.log.debug("callback login succ res:" +  util.inspect(res));
         sails.log.debug("req.user:" +  util.inspect(req.user));
-        //sails.log.debug("res.req.user:" +  util.inspect(res.req.user));
-        //sails.log.debug("user:" +  util.inspect(user));
         req.flash('user', req.user);
         res.redirect('/');
       });
